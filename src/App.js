@@ -13,6 +13,7 @@ class App extends React.Component {
     this.handleOperator = this.handleOperator.bind(this);
     this.handleEquals = this.handleEquals.bind(this);
     this.handleClear = this.handleClear.bind(this);
+    this.handleDecimal = this.handleDecimal.bind(this);
   }
 
   handleNumber(event) {
@@ -80,10 +81,11 @@ class App extends React.Component {
   }
 
   handleDecimal() {
-    if (this.state.last !== ".") {
+    console.log(this.state.last.includes("."));
+    if (!this.state.last.includes(".")) {
       this.setState({
         formula: this.state.formula + ".",
-        last: ".",
+        last: this.state.last + ".",
       });
     }
   }
@@ -138,7 +140,7 @@ class App extends React.Component {
           <button id="divide" onClick={this.handleOperator} value="/">
             /
           </button>
-          <button id="decimal" onClick={this.handleOperator} value=".">
+          <button id="decimal" onClick={this.handleDecimal} value=".">
             .
           </button>
           <button id="clear" onClick={this.handleClear} value="AC">
