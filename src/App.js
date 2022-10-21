@@ -51,12 +51,33 @@ class App extends React.Component {
   handleOperator(event) {
     let operator = event.target.value;
     if (isNaN(this.state.last)) {
-      this.setState({
-        formula:
-          this.state.formula.substring(0, this.state.formula.length - 1) +
-          operator,
-        last: operator,
-      });
+      if (operator === "-") {
+        if (this.state.last !== "-") {
+          this.setState({
+            formula: this.state.formula + operator,
+            last: operator,
+          });
+        }
+      } else {
+        if (
+          this.state.last === "-" &&
+          isNaN(this.state.formula[this.state.formula.length - 2])
+        ) {
+          this.setState({
+            formula:
+              this.state.formula.substring(0, this.state.formula.length - 2) +
+              operator,
+            last: operator,
+          });
+        } else {
+          this.setState({
+            formula:
+              this.state.formula.substring(0, this.state.formula.length - 1) +
+              operator,
+            last: operator,
+          });
+        }
+      }
     } else {
       this.setState({
         formula: this.state.formula + operator,
@@ -81,7 +102,6 @@ class App extends React.Component {
   }
 
   handleDecimal() {
-    console.log(this.state.last.includes("."));
     if (!this.state.last.includes(".")) {
       this.setState({
         formula: this.state.formula + ".",
