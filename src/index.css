@@ -21,6 +21,17 @@ body {
 
 #display {
   background-color: black;
+  color: white;
+  text-align: right;
+  padding: 1rem;
+}
+
+#display-formula {
+  font-size: 1rem;
+}
+
+#display-result {
+  font-size: 2rem;
 }
 
 .button-wrapper {
